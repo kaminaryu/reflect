@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://eenbyicaechf"]
+
+[ext_resource type="Script" uid="uid://bc14hpikgtvfc" path="res://Objects/sonar.gd" id="1_xsxt7"]
+
+[node name="Sonar" type="Node2D"]
+script = ExtResource("1_xsxt7")

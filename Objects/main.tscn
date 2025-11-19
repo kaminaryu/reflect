@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfdrfpasb04i1"]
+
+[ext_resource type="Script" uid="uid://fxk2de8wv2x3" path="res://Objects/main.gd" id="1_h4pkl"]
+[ext_resource type="PackedScene" uid="uid://bpidd5tk4b8n5" path="res://Objects/Turret.tscn" id="1_wfcdt"]
+[ext_resource type="PackedScene" uid="uid://eenbyicaechf" path="res://Objects/sonar.tscn" id="3_2r4pp"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_h4pkl")
+
+[node name="Turret" parent="." instance=ExtResource("1_wfcdt")]
+position = Vector2(30, 22)
+
+[node name="Turret2" parent="." instance=ExtResource("1_wfcdt")]
+position = Vector2(128, 42)
+
+[node name="Sonar" parent="." instance=ExtResource("3_2r4pp")]
