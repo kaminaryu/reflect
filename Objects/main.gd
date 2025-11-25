@@ -13,6 +13,12 @@ func _input(evt) -> void:
             var result: Dictionary = physics_space.intersect_ray(query)
             
             pretty_print(result)
+            
+    # quick quit for debugging
+    elif evt is InputEventKey :
+        if evt.pressed and evt.keycode == KEY_ESCAPE :
+            get_tree().quit()
+
 
 func pretty_print(dict: Dictionary) -> void :
     

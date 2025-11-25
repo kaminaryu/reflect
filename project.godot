@@ -22,7 +22,6 @@ DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 [display]
 
 window/stretch/mode="viewport"
-window/stretch/scale=2.0
 
 [editor_plugins]
 

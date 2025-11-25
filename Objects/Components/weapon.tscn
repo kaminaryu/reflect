@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cguf41srkikn8"]
+
+[ext_resource type="Script" uid="uid://ndc63u4kbe2m" path="res://weapon.gd" id="1_2jjse"]
+[ext_resource type="Texture2D" uid="uid://de7j7un0pi3ba" path="res://Arts/TurretBase.png" id="2_fwwki"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_2jjse")
+delay = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fwwki")

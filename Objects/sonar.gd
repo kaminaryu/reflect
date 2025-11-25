@@ -47,7 +47,7 @@ func waveAnim() -> void :
             # if its the time to print the wave
             if frames > waveFrame[i] :
                 waveRadius[i] += WAVE_SPEED
-                print("Wave[", i, "] Radius: ", waveRadius)
+                #print("Wave[", i, "] Radius: ", waveRadius)
                 
             # destroy waves
             if waveRadius[i] > WAVE_RADIUS_LIMIT :
