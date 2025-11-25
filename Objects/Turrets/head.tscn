@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://caopo1bwbjv8a"]
+
+[ext_resource type="Script" uid="uid://c44utbotlcw5p" path="res://Objects/Turrets/head.gd" id="1_vlald"]
+
+[node name="HeadTurret" type="Node2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_vlald")
