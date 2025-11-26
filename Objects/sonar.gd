@@ -2,9 +2,9 @@ extends Node2D
 
 const TOTAL_WAVES : int = 5
 const WAVE_FRAME_GAPS : int = 10
-const WAVE_SPEED : float = 5.5
-const WAVE_RADIUS_LIMIT : float = 100.0
-const WAVE_MAX_THICKNESS : float = 3.5
+const WAVE_SPEED : float = 6.7
+const WAVE_RADIUS_LIMIT : float = 350.0
+const WAVE_MAX_THICKNESS : float = 6.7
 const RIPPLE_DAMPING : float = 0.5
 
 var waveEmits := false
@@ -19,7 +19,8 @@ func _input(evt) -> void :
             if waveEmits :
                 return
             waveEmits = true
-            waveCenter = evt.position
+            waveCenter = get_global_mouse_position()
+            #waveCenter = get_viewport().get_camera_2d().get_global_transform().affine_inverse().xform(evt.position)
             waveAnim()
             
     

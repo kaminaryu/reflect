@@ -1,0 +1,161 @@
+extends Node2D
+
+const MAP_SIZE := Vector2(16, 9)
+
+@onready var tileMap := $TileMapLayer
+var gen_path:Dictionary # store all path
+
+func rand_vector(from: Vector2, to: Vector2) -> Vector2:
+    var v: Vector2
+    v.x = randi_range(from.x, to.x)
+    v.y = randi_range(from.y, to.y)
+    return v
+    
+func add_path(pos:Vector2, atlas_pos:Vector2, dir:int) -> void :
+    tileMap.set_cell(pos, 0, atlas_pos, dir)
+    gen_path[pos] = 0#[atlas_pos, dir]
+    
+func out_of_bounds(pos:Vector2, bounds:Vector2) -> bool :
+    return pos.x > bounds.x or pos.x < 0 \
+    or pos.y > bounds.y or pos.y < 0
+    
+func round_vector(v:Vector2) -> Vector2 :
+    v.x = round(v.x)
+    v.y = round(v.y)
+    return v
+
+    
+func generate_paths() -> int :
+    print("------------------------")
+    # generate start point
+    var path_pos := rand_vector(Vector2.ZERO, Vector2(MAP_SIZE.x/2, MAP_SIZE.y))
+    var path_dir := Vector2.RIGHT
+    var cardinal_dir := 1 # for tiles atlas, N = 0, E = 1, S = 2, W = 3, going left is +1, going right is +0
+    add_path(path_pos, Vector2(1,1), cardinal_dir)
+    print("Start goal ", path_pos, " | ", cardinal_dir)
+    
+    # get path length, 10% of map size +- offsets
+    var offset := randi_range(-4, 4)
+    var path_len:int = 0.1 * (MAP_SIZE.x * MAP_SIZE.y) + offset
+    #print(path_len)
+    
+    # generate path (straights or turn)
+    for i in range(path_len) :
+        path_pos = round_vector(path_pos + path_dir)
+        
+        # predicted path, for checking
+        var pred_path:Dictionary = {
+            "right": round_vector(path_pos + path_dir.rotated(PI/2)),
+            "left": round_vector(path_pos + path_dir.rotated(-PI/2)),
+            "straight": round_vector(path_pos + path_dir)
+        }
+        var right_blocked := false
+        var left_blocked := false
+        var straight_blocked := false
+        
+        # check if path is blocked
+        if pred_path.right in gen_path or out_of_bounds(pred_path.right, MAP_SIZE) :
+            right_blocked = true
+            
+        if pred_path.left in gen_path or out_of_bounds(pred_path.left, MAP_SIZE) :
+            left_blocked = true
+            
+        if pred_path.straight in gen_path or out_of_bounds(pred_path.straight, MAP_SIZE) :
+            straight_blocked = true
+            
+        # restart if all path is blocked lol
+        if right_blocked and left_blocked and straight_blocked :
+            return -1
+            
+        print("Path exists: ", path_pos in gen_path, " => ", right_blocked, " | ", left_blocked, " | ", straight_blocked)
+        print("Current Path: ", path_pos, " | ", cardinal_dir, " | ", path_dir)
+            
+        # if its the last cell, we add the end goal
+        if i+1 == path_len :
+            add_path(path_pos, Vector2(1, 1), cardinal_dir +  4)
+            print("End goal: ", path_pos, " | ", cardinal_dir, " | ", path_dir)
+            return 0
+             
+        # if 70% or both sides path are blocked || force turn if straight path is blocked 
+        if (randi_range(0, 10) > 3 or (right_blocked and left_blocked)) and not straight_blocked :
+            add_path(path_pos, Vector2(0, 0), cardinal_dir % 2)
+            print("going straight")
+            
+        # turn
+        else :
+            # right and not blocked and if left is free, force turn right
+            if (randi_range(0, 1) and not right_blocked) or left_blocked:
+                add_path(path_pos, Vector2(1, 0), cardinal_dir)
+                path_dir = path_dir.rotated(PI/2)
+                cardinal_dir += 1
+                print("turning righ")
+            
+            # left
+            else :
+                add_path(path_pos, Vector2(1, 0), (cardinal_dir + 1) % 4)
+                path_dir = path_dir.rotated(-PI/2)
+                cardinal_dir -= 1
+                print("turning left")
+            
+            # because -1 % 4 != apparently
+            if cardinal_dir == -1 :
+                cardinal_dir = 3
+                
+            cardinal_dir %= 4
+        print("")
+            
+    ## end goal
+    #print("End goal: ", path_pos, " | ", cardinal_dir, " | ", path_dir)
+    ## Check if end position is valid
+    #if path_pos + path_dir in gen_path or out_of_bounds(path_pos + path_dir, MAP_SIZE):
+        #return -1
+        #
+    #add_path(path_pos + path_dir, Vector2(1, 1), cardinal_dir +  4)
+    
+    
+    # centering the map
+    # gonna be honest, idk why i need to + Vector2(1, 1)
+    var mapSize := (MAP_SIZE + Vector2(1, 1)) * 128
+    var vp_size = get_viewport().get_visible_rect().size * 2 #because zoomed out
+    tileMap.position = (vp_size - mapSize) * 0.5
+    
+    return 0
+    
+    
+func _ready() -> void:
+    # borders
+    #tileMap.set_cell(Vector2i(0, 0), 0, Vector2i(0, 0), 1)
+    #tileMap.set_cell(Vector2i(MAP_SIZE.x, 0), 0, Vector2i(0, 0), 1)
+    #tileMap.set_cell(Vector2i(0, MAP_SIZE.y), 0, Vector2i(0, 0), 1)
+    #tileMap.set_cell(MAP_SIZE, 0, Vector2i(0, 0), 1)
+    while true :
+        tileMap.clear()
+        gen_path.clear()
+        var err = generate_paths()
+        
+        if not err :
+            break
+
+    
+    
+func _input(event: InputEvent) -> void:
+    if event is InputEventMouseButton :
+        if event.pressed and event.button_index == MOUSE_BUTTON_RIGHT :
+            while true :
+                tileMap.clear()
+                gen_path.clear()
+                var err = generate_paths()
+                
+                if not err :
+                    break
+            #print(event.position)
+            #var rng = RandomNumberGenerator.new()
+            #rng.randomize() # using time based seed
+            #
+            #var start:Vector2
+            #start.x = randi_range(0, MAP_SIZE.x)
+            #start.y = randi_range(0, MAP_SIZE.y)
+            #
+            ##print(start)
+            #
+            #tileMap.set_cell(start, 0, Vector2i(1, 1), randi_range(0, 3))

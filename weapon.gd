@@ -21,8 +21,7 @@ func _process(delta: float) -> void:
         bullet.global_position = global_position
         bullet.direction = Vector2.RIGHT.rotated(get_parent().rotation)
     
-        print("New bullet spawned")
-        print(get_parent().rotation)
+        #print("New bullet spawned"); print(get_parent().rotation)
         #print(global_position, bullet.global_position)
         
         
