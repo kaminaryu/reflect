@@ -5,11 +5,16 @@ extends Node2D
 @onready var bulletScn := preload("res://Objects/Components/bullet.tscn")
 
 var totalTime:float = 0.0
+var shooting := false
 
 func _ready() -> void:
     visible = false
     
 func _process(delta: float) -> void:
+    if not shooting :
+        totalTime = delay
+        return 
+        
     totalTime += delta
 
     if totalTime > delay :

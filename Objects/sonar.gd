@@ -22,6 +22,7 @@ func _input(evt) -> void :
             waveCenter = get_global_mouse_position()
             #waveCenter = get_viewport().get_camera_2d().get_global_transform().affine_inverse().xform(evt.position)
             waveAnim()
+            detect_enemies()
             
     
     
@@ -63,6 +64,10 @@ func waveAnim() -> void :
         frames += 1
         await get_tree().create_timer(0.01).timeout
         
+    
+func detect_enemies :
+    pass   
+    
     
 func _draw() -> void :
     for i in range(len(waveFrame)) :

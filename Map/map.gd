@@ -124,7 +124,7 @@ func generate_paths() -> int :
 
 
     $BugSpawner.init_spawner(goal_pos, end_pos, gen_path)
-    print("what")
+    #print("what")
     return 0
     
     

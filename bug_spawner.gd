@@ -31,7 +31,7 @@ func get_corners(paths) :
             #current_dir = path.dir
             
         if path.turn_to :
-            print("corner lol at ", path.pos)
+            #print("corner lol at ", path.pos)
             corners_pos[path.pos] = path.turn_to
     
 
@@ -45,6 +45,8 @@ func _process(delta: float) -> void:
         bug.position = global_position
         bug.corners_pos = corners_pos
         bug.death_pos = death_pos
+        bug.add_to_group("Bugs")
+        bug.visible = false
         get_tree().current_scene.add_child(bug)
         
         
