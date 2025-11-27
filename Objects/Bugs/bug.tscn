@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://br1cfuodwh4ke"]
+[gd_scene load_steps=5 format=3 uid="uid://br1cfuodwh4ke"]
 
 [ext_resource type="Script" uid="uid://dayqwghm28px8" path="res://Objects/Bugs/bug.gd" id="1_cnrhp"]
 [ext_resource type="Texture2D" uid="uid://ck7gqn5ghdbdp" path="res://Arts/Enemy.png" id="1_opu16"]
+[ext_resource type="PackedScene" uid="uid://bbu5enuna2va7" path="res://invis_handler.tscn" id="3_4tgui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_opu16"]
 size = Vector2(56, 56)
@@ -15,5 +16,7 @@ texture = ExtResource("1_opu16")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_opu16")
+
+[node name="InvisHandler" parent="." instance=ExtResource("3_4tgui")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -27,8 +27,19 @@ func _process(delta: float) -> void :
         queue_free()
 
 
+
+#func toggle_visible(state:String) -> void :
+    #if state == "visible" :
+        #visible = true
+        #$AnimationPlayer.play("FadeIn")
+        #
+        #$Timer.start()
+    #
+#func _on_timer_timeout() -> void:
+    #$AnimationPlayer.play("FadeOut")
+    
+    
 func _on_body_entered(body: Node2D) -> void:
-    print("die")
     body.queue_free()
     
     health -= 1

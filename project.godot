@@ -32,7 +32,8 @@ enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/go
 
 [global_group]
 
-Bugs=""
+Bugs="Enemies"
+Objects="For Invis check"
 
 [rendering]
 

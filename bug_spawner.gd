@@ -46,7 +46,6 @@ func _process(delta: float) -> void:
         bug.corners_pos = corners_pos
         bug.death_pos = death_pos
         bug.add_to_group("Bugs")
-        bug.visible = false
         get_tree().current_scene.add_child(bug)
         
         

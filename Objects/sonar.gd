@@ -65,8 +65,16 @@ func waveAnim() -> void :
         await get_tree().create_timer(0.01).timeout
         
     
-func detect_enemies :
-    pass   
+func detect_enemies() :
+    print("Scanning")
+    var objs := get_tree().get_nodes_in_group("Objects")
+    
+    for obj in objs :
+        if waveCenter.distance_to(obj.position) < WAVE_RADIUS_LIMIT * 1.2 :
+            obj.get_node("InvisHandler").toggle_visible()
+            print(obj)
+            print(obj.get_node("InvisHandler"))
+        
     
     
 func _draw() -> void :
@@ -76,5 +84,6 @@ func _draw() -> void :
             continue
             
         draw_circle(waveCenter, waveRadius[i], Color.GREEN_YELLOW, false, waveThickness[i])
+        
         
     #draw_arc(waveCenter, waveRadius-10, 0, PI/2, 64, Color.RED, 10)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ciomganmsqkda"]
+[gd_scene load_steps=6 format=3 uid="uid://ciomganmsqkda"]
 
 [ext_resource type="PackedScene" uid="uid://j6430foqheiv" path="res://Objects/Turrets/base.tscn" id="1_e24ou"]
 [ext_resource type="PackedScene" uid="uid://caopo1bwbjv8a" path="res://Objects/Turrets/head.tscn" id="2_box2j"]
 [ext_resource type="Texture2D" uid="uid://dlhkh2ttx85v8" path="res://Arts/ArchHead.png" id="3_hpktt"]
 [ext_resource type="PackedScene" uid="uid://cguf41srkikn8" path="res://Objects/Components/weapon.tscn" id="4_box2j"]
+[ext_resource type="PackedScene" uid="uid://bbu5enuna2va7" path="res://invis_handler.tscn" id="5_hpktt"]
 
 [node name="Arch" type="Node2D"]
 
@@ -18,3 +19,5 @@ texture = ExtResource("3_hpktt")
 
 [node name="Weapon" parent="HeadTurret" instance=ExtResource("4_box2j")]
 position = Vector2(54, 0)
+
+[node name="InvisHandler" parent="." instance=ExtResource("5_hpktt")]
