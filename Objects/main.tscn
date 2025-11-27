@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfdrfpasb04i1"]
+[gd_scene load_steps=4 format=3 uid="uid://bfdrfpasb04i1"]
 
 [ext_resource type="Script" uid="uid://fxk2de8wv2x3" path="res://Objects/main.gd" id="1_h4pkl"]
 [ext_resource type="PackedScene" uid="uid://eenbyicaechf" path="res://Objects/sonar.tscn" id="3_2r4pp"]
-[ext_resource type="PackedScene" uid="uid://ciomganmsqkda" path="res://Objects/Turrets/arch.tscn" id="4_d7gkb"]
 [ext_resource type="PackedScene" uid="uid://bv8be3lqi5dye" path="res://Map/map.tscn" id="4_k26ky"]
 
 [node name="Main" type="Node2D"]
@@ -11,9 +10,6 @@ script = ExtResource("1_h4pkl")
 [node name="Sonar" parent="." instance=ExtResource("3_2r4pp")]
 
 [node name="Map" parent="." instance=ExtResource("4_k26ky")]
-
-[node name="Arch" parent="." instance=ExtResource("4_d7gkb")]
-position = Vector2(449, 195)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0

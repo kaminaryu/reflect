@@ -1,6 +1,6 @@
 extends Node2D
 
-const MAP_SIZE := Vector2(16, 9)
+const MAP_SIZE := Vector2(10, 6)
 
 @onready var tileMap := $TileMapLayer
 var gen_path:Dictionary # store all path
@@ -11,9 +11,14 @@ func rand_vector(from: Vector2, to: Vector2) -> Vector2:
     v.y = randi_range(from.y, to.y)
     return v
     
-func add_path(pos:Vector2, atlas_pos:Vector2, dir:int) -> void :
-    tileMap.set_cell(pos, 0, atlas_pos, dir)
-    gen_path[pos] = 0#[atlas_pos, dir]
+func add_path(coords:Vector2, atlas_pos:Vector2, dir:int, turn_to:float = 0) -> void :
+    tileMap.set_cell(coords, 0, atlas_pos, dir)
+    gen_path[coords] = {
+        "dir": dir,
+        # translate map to viewport pos + offset
+        "pos": tileMap.map_to_local(coords) + tileMap.position,
+        "turn_to": turn_to
+    }
     
 func out_of_bounds(pos:Vector2, bounds:Vector2) -> bool :
     return pos.x > bounds.x or pos.x < 0 \
@@ -26,17 +31,27 @@ func round_vector(v:Vector2) -> Vector2 :
 
     
 func generate_paths() -> int :
-    print("------------------------")
+    #print("------------------------")
+    
+    # centering the map
+    # gonna be honest, idk why i need to + Vector2(1, 1)
+    var mapSize := (MAP_SIZE + Vector2(1, 1)) * 128
+    var vp_size = get_viewport().get_visible_rect().size * 2 #because zoomed out
+    tileMap.position = (vp_size - mapSize) * 0.5
+    
+    
     # generate start point
     var path_pos := rand_vector(Vector2.ZERO, Vector2(MAP_SIZE.x/2, MAP_SIZE.y))
     var path_dir := Vector2.RIGHT
     var cardinal_dir := 1 # for tiles atlas, N = 0, E = 1, S = 2, W = 3, going left is +1, going right is +0
-    add_path(path_pos, Vector2(1,1), cardinal_dir)
-    print("Start goal ", path_pos, " | ", cardinal_dir)
+    var goal_pos := path_pos
+    var end_pos  := path_pos
+    add_path(goal_pos, Vector2(1,1), cardinal_dir)
+    #print("Start goal ", path_pos, " | ", cardinal_dir)
     
-    # get path length, 10% of map size +- offsets
+    # get path length, part of map size +- offsets
     var offset := randi_range(-4, 4)
-    var path_len:int = 0.1 * (MAP_SIZE.x * MAP_SIZE.y) + offset
+    var path_len:int = 0.25 * (MAP_SIZE.x * MAP_SIZE.y) + offset
     #print(path_len)
     
     # generate path (straights or turn)
@@ -67,67 +82,59 @@ func generate_paths() -> int :
         if right_blocked and left_blocked and straight_blocked :
             return -1
             
-        print("Path exists: ", path_pos in gen_path, " => ", right_blocked, " | ", left_blocked, " | ", straight_blocked)
-        print("Current Path: ", path_pos, " | ", cardinal_dir, " | ", path_dir)
+        #print("Path exists: ", path_pos in gen_path, " => ", right_blocked, " | ", left_blocked, " | ", straight_blocked)
+        #print("Current Path: ", path_pos, " | ", cardinal_dir, " | ", path_dir)
             
         # if its the last cell, we add the end goal
-        if i+1 == path_len :
-            add_path(path_pos, Vector2(1, 1), cardinal_dir +  4)
-            print("End goal: ", path_pos, " | ", cardinal_dir, " | ", path_dir)
-            return 0
+        if i == path_len - 1 :
+            end_pos = path_pos
+            add_path(end_pos, Vector2(1, 1), cardinal_dir +  4)
+            #print("End goal: ", path_pos, " | ", cardinal_dir, " | ", path_dir)
+            break
              
         # if 70% or both sides path are blocked || force turn if straight path is blocked 
         if (randi_range(0, 10) > 3 or (right_blocked and left_blocked)) and not straight_blocked :
             add_path(path_pos, Vector2(0, 0), cardinal_dir % 2)
-            print("going straight")
+            #print("going straight")
             
         # turn
         else :
             # right and not blocked and if left is free, force turn right
             if (randi_range(0, 1) and not right_blocked) or left_blocked:
-                add_path(path_pos, Vector2(1, 0), cardinal_dir)
+                add_path(path_pos, Vector2(1, 0), cardinal_dir, PI/2)
                 path_dir = path_dir.rotated(PI/2)
                 cardinal_dir += 1
-                print("turning righ")
+                #print("turning righ")
             
             # left
             else :
-                add_path(path_pos, Vector2(1, 0), (cardinal_dir + 1) % 4)
+                add_path(path_pos, Vector2(1, 0), (cardinal_dir + 1) % 4, -PI/2)
                 path_dir = path_dir.rotated(-PI/2)
                 cardinal_dir -= 1
-                print("turning left")
+                #print("turning left")
             
             # because -1 % 4 != apparently
             if cardinal_dir == -1 :
                 cardinal_dir = 3
                 
             cardinal_dir %= 4
-        print("")
-            
-    ## end goal
-    #print("End goal: ", path_pos, " | ", cardinal_dir, " | ", path_dir)
-    ## Check if end position is valid
-    #if path_pos + path_dir in gen_path or out_of_bounds(path_pos + path_dir, MAP_SIZE):
-        #return -1
-        #
-    #add_path(path_pos + path_dir, Vector2(1, 1), cardinal_dir +  4)
+        #print("")
     
     
-    # centering the map
-    # gonna be honest, idk why i need to + Vector2(1, 1)
-    var mapSize := (MAP_SIZE + Vector2(1, 1)) * 128
-    var vp_size = get_viewport().get_visible_rect().size * 2 #because zoomed out
-    tileMap.position = (vp_size - mapSize) * 0.5
-    
+
+
+    $BugSpawner.init_spawner(goal_pos, end_pos, gen_path)
+    print("what")
     return 0
     
     
 func _ready() -> void:
     # borders
-    #tileMap.set_cell(Vector2i(0, 0), 0, Vector2i(0, 0), 1)
-    #tileMap.set_cell(Vector2i(MAP_SIZE.x, 0), 0, Vector2i(0, 0), 1)
-    #tileMap.set_cell(Vector2i(0, MAP_SIZE.y), 0, Vector2i(0, 0), 1)
+    tileMap.set_cell(Vector2i(0, 0), 0, Vector2i(0, 0), 1)
+    tileMap.set_cell(Vector2i(MAP_SIZE.x, 0), 0, Vector2i(0, 0), 1)
+    tileMap.set_cell(Vector2i(0, MAP_SIZE.y), 0, Vector2i(0, 0), 1)
     #tileMap.set_cell(MAP_SIZE, 0, Vector2i(0, 0), 1)
+    
     while true :
         tileMap.clear()
         gen_path.clear()
@@ -148,14 +155,3 @@ func _input(event: InputEvent) -> void:
                 
                 if not err :
                     break
-            #print(event.position)
-            #var rng = RandomNumberGenerator.new()
-            #rng.randomize() # using time based seed
-            #
-            #var start:Vector2
-            #start.x = randi_range(0, MAP_SIZE.x)
-            #start.y = randi_range(0, MAP_SIZE.y)
-            #
-            ##print(start)
-            #
-            #tileMap.set_cell(start, 0, Vector2i(1, 1), randi_range(0, 3))

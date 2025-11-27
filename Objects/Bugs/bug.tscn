@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://br1cfuodwh4ke"]
+
+[ext_resource type="Script" uid="uid://dayqwghm28px8" path="res://Objects/Bugs/bug.gd" id="1_cnrhp"]
+[ext_resource type="Texture2D" uid="uid://ck7gqn5ghdbdp" path="res://Arts/Enemy.png" id="1_opu16"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_opu16"]
+size = Vector2(56, 56)
+
+[node name="Bug" type="StaticBody2D"]
+script = ExtResource("1_cnrhp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_opu16")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_opu16")
