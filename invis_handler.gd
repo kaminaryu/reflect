@@ -1,9 +1,13 @@
 extends Node2D
 
 #@onready var tween = create_tween()
-@export var playing_anim := false
+var playing_anim := false
+@export var enabled := true
 
 func _ready() -> void:
+    if not enabled :
+        return
+        
     get_parent().add_to_group("Objects")
     get_parent().modulate.a = 0.0
     

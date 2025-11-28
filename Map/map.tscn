@@ -65,3 +65,4 @@ zoom = Vector2(0.5, 0.5)
 [node name="BugSpawner" parent="." instance=ExtResource("3_6yc6o")]
 
 [node name="InvisHandler" parent="." instance=ExtResource("4_86j4t")]
+enabled = false
