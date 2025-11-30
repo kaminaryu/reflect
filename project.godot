@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 TurretBuilder="*res://turret_builder.gd"
+GridOrganizer="*res://grid_organizer.gd"
 
 [display]
 

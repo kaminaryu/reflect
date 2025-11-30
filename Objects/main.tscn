@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfdrfpasb04i1"]
+[gd_scene load_steps=5 format=3 uid="uid://bfdrfpasb04i1"]
 
 [ext_resource type="Script" uid="uid://fxk2de8wv2x3" path="res://Objects/main.gd" id="1_h4pkl"]
 [ext_resource type="PackedScene" uid="uid://eenbyicaechf" path="res://Objects/sonar.tscn" id="3_2r4pp"]
+[ext_resource type="PackedScene" uid="uid://b223kfta31p5v" path="res://Objects/UI/turret_cursor.tscn" id="4_d7gkb"]
 [ext_resource type="PackedScene" uid="uid://bv8be3lqi5dye" path="res://Map/map.tscn" id="4_k26ky"]
 
 [node name="Main" type="Node2D"]
@@ -14,3 +15,5 @@ script = ExtResource("1_h4pkl")
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 zoom = Vector2(0.5, 0.5)
+
+[node name="TurretCursor" parent="." instance=ExtResource("4_d7gkb")]

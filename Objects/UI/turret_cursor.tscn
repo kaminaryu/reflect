@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b223kfta31p5v"]
+
+[ext_resource type="Script" uid="uid://dglsdb4vd34db" path="res://Objects/UI/turret_cursor.gd" id="1_elbia"]
+[ext_resource type="Texture2D" uid="uid://dhx7fyobrrpl6" path="res://Arts/TurretPlacement.png" id="2_fltlb"]
+
+[node name="TurretCursor" type="Node2D"]
+script = ExtResource("1_elbia")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fltlb")

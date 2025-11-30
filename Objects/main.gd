@@ -1,21 +1,21 @@
 extends Node2D
 
 func _input(evt) -> void:
-    if evt is InputEventMouseButton :
-        if evt.pressed and evt.button_index == MOUSE_BUTTON_LEFT :
-            print(evt.position);
-    # get physics space from      the world     (this is the physics space)
-            var physics_space = get_world_2d().direct_space_state
-            
-            # create a query for the ray direction using this weird ass object
-            var query := PhysicsRayQueryParameters2D.create(evt.position, evt.position + Vector2(100, 0))
-            # cast the rays
-            var result: Dictionary = physics_space.intersect_ray(query)
-            
-            pretty_print(result)
+    #if evt is InputEventMouseButton :
+        #if evt.pressed and evt.button_index == MOUSE_BUTTON_LEFT :
+            ##print(evt.position);
+    ## get physics space from      the world     (this is the physics space)
+            #var physics_space = get_world_2d().direct_space_state
+            #
+            ## create a query for the ray direction using this weird ass object
+            #var query := PhysicsRayQueryParameters2D.create(evt.position, evt.position + Vector2(100, 0))
+            ## cast the rays
+            #var result: Dictionary = physics_space.intersect_ray(query)
+            #
+            #pretty_print(result)
             
     # quick quit for debugging
-    elif evt is InputEventKey :
+    if evt is InputEventKey :
         if evt.pressed and evt.keycode == KEY_ESCAPE :
             get_tree().quit()
 

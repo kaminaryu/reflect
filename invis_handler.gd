@@ -17,7 +17,7 @@ func _ready() -> void:
     
     
 func toggle_visible() -> void :
-    print("hello ", get_parent().visible, "  |  ", get_parent().modulate)
+    #print("hello ", get_parent().visible, "  |  ", get_parent().modulate)
     get_parent().visible = true
     showing()
     

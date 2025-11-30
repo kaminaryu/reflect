@@ -5,7 +5,6 @@ var total_time:float = 0.0
 var corners_pos:Dictionary
 
 @onready var bug_scn = preload("res://Objects/Bugs/bug.tscn")
-@onready var marker_scn = preload("res://Objects/debugs/marker.tscn")
 
 func init_spawner(goal_coords:Vector2, end_coords:Vector2, paths:Dictionary) -> void :
     position = paths[goal_coords].pos

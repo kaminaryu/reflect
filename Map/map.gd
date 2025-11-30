@@ -14,12 +14,18 @@ func rand_vector(from: Vector2, to: Vector2) -> Vector2:
     
 func add_path(coords:Vector2, atlas_pos:Vector2, dir:int, turn_to:float = 0) -> void :
     tileMap.set_cell(coords, 0, atlas_pos, dir)
+    var pos:Vector2 = tileMap.map_to_local(coords) + tileMap.position
     gen_path[coords] = {
         "dir": dir,
         # translate map to viewport pos + offset
-        "pos": tileMap.map_to_local(coords) + tileMap.position,
+        "pos": pos,
         "turn_to": turn_to
     }
+    
+    # add to grid organizer so that i can check for used tiles esp at Turret_Cursor.tscn
+    GridOrganizer.add_to_grid(pos)
+    
+    
     # add black square for fog of war of paths
     var black := black_scn.instantiate()
     black.position = tileMap.map_to_local(coords) + tileMap.position
@@ -42,7 +48,7 @@ func generate_paths() -> int :
     # gonna be honest, idk why i need to + Vector2(1, 1)
     var mapSize := (MAP_SIZE + Vector2(1, 1)) * 128
     var vp_size = get_viewport().get_visible_rect().size * 2 #because zoomed out
-    tileMap.position = (vp_size - mapSize) * 0.5
+    tileMap.position = ((vp_size - mapSize) * 0.5).snapped(Vector2(128, 128)) - Vector2(64, 64) # offset cuz fucky wucky
     
     
     # generate start point
@@ -134,29 +140,32 @@ func generate_paths() -> int :
     
     
 func _ready() -> void:
-    # borders
-    tileMap.set_cell(Vector2i(0, 0), 0, Vector2i(0, 0), 1)
-    tileMap.set_cell(Vector2i(MAP_SIZE.x, 0), 0, Vector2i(0, 0), 1)
-    tileMap.set_cell(Vector2i(0, MAP_SIZE.y), 0, Vector2i(0, 0), 1)
-    #tileMap.set_cell(MAP_SIZE, 0, Vector2i(0, 0), 1)
-    
     while true :
         tileMap.clear()
         gen_path.clear()
+        GridOrganizer.used_grids.clear()
+        
+        # borders
+        #tileMap.set_cell(Vector2i(0, 0), 0, Vector2i(0, 0), 1)
+        #tileMap.set_cell(Vector2i(MAP_SIZE.x, 0), 0, Vector2i(0, 0), 1)
+        #tileMap.set_cell(Vector2i(0, MAP_SIZE.y), 0, Vector2i(0, 0), 1)
+        #tileMap.set_cell(MAP_SIZE, 0, Vector2i(0, 0), 1)
+        
+        # repeatly gen path until valid path is created
         var err = generate_paths()
         
         if not err :
             break
 
     
-    
-func _input(event: InputEvent) -> void:
-    if event is InputEventMouseButton :
-        if event.pressed and event.button_index == MOUSE_BUTTON_RIGHT :
-            while true :
-                tileMap.clear()
-                gen_path.clear()
-                var err = generate_paths()
-                
-                if not err :
-                    break
+# re generate paths
+#func _input(event: InputEvent) -> void:
+    #if event is InputEventMouseButton :
+        #if event.pressed and event.button_index == MOUSE_BUTTON_RIGHT :
+            #while true :
+                #tileMap.clear()
+                #gen_path.clear()
+                #var err = generate_paths()
+                #
+                #if not err :
+                    #break

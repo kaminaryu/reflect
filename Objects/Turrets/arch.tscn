@@ -21,3 +21,4 @@ texture = ExtResource("3_hpktt")
 position = Vector2(54, 0)
 
 [node name="InvisHandler" parent="." instance=ExtResource("5_hpktt")]
+enabled = false

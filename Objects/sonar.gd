@@ -66,14 +66,14 @@ func waveAnim() -> void :
         
     
 func detect_enemies() :
-    print("Scanning")
+    #print("Scanning")
     var objs := get_tree().get_nodes_in_group("Objects")
     
     for obj in objs :
         if waveCenter.distance_to(obj.position) < WAVE_RADIUS_LIMIT * 1.2 :
             obj.get_node("InvisHandler").toggle_visible()
-            print(obj)
-            print(obj.get_node("InvisHandler"))
+            #print(obj)
+            #print(obj.get_node("InvisHandler"))
         
     
     

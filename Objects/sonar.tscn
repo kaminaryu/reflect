@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://bc14hpikgtvfc" path="res://Objects/sonar.gd" id="1_xsxt7"]
 
 [node name="Sonar" type="Node2D"]
+z_index = 4096
 script = ExtResource("1_xsxt7")
