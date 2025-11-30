@@ -23,7 +23,10 @@ func _process(delta) -> void:
         target_bug = find_nearest_bug()
         
     if target_bug == null :
-        $Weapon.shooting = false
+        #for child in get_children() :
+                #if not "Weapon" in child.name :
+                    #return
+                #child.shooting = false
         return
         
     enemy_pos = target_bug.global_position
@@ -44,7 +47,10 @@ func find_nearest_bug() -> Node :
         if curr_dist < min_dist and curr_dist < MAX_DIST :
             min_dist = curr_dist
             target_bug = bug
-            $Weapon.shooting = true
+            #for child in get_children() :
+                #if not "Weapon" in child.name :
+                    #return
+                #child.shooting = true
     
     return target_bug
         

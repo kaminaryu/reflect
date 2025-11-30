@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bv8be3lqi5dye"]
+[gd_scene load_steps=6 format=3 uid="uid://bv8be3lqi5dye"]
 
 [ext_resource type="Script" uid="uid://cfh8j4whyk6aw" path="res://Map/map.gd" id="1_njngi"]
 [ext_resource type="Texture2D" uid="uid://bdrn6w8251e4c" path="res://Arts/TileSet.png" id="1_ro55w"]
 [ext_resource type="PackedScene" uid="uid://bntmd0nk7qfsm" path="res://Objects/Bugs/bug_spawner.tscn" id="3_6yc6o"]
-[ext_resource type="PackedScene" uid="uid://bbu5enuna2va7" path="res://invis_handler.tscn" id="4_86j4t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_njngi"]
 texture = ExtResource("1_ro55w")
@@ -63,6 +62,3 @@ anchor_mode = 0
 zoom = Vector2(0.5, 0.5)
 
 [node name="BugSpawner" parent="." instance=ExtResource("3_6yc6o")]
-
-[node name="InvisHandler" parent="." instance=ExtResource("4_86j4t")]
-enabled = false

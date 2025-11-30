@@ -1,19 +1,24 @@
 extends Node2D
 
 @export var delay: float
+@export var delay_offset: float
 
 @onready var bulletScn := preload("res://Objects/Components/bullet.tscn")
 
 var totalTime:float = 0.0
-var shooting := false
+var shooting := false # for head.gd
 
 func _ready() -> void:
     visible = false
     
 func _process(delta: float) -> void:
-    if not shooting :
-        totalTime = delay
-        return 
+    #if not shooting :
+        #totalTime = delay #for head.gd
+        #return
+        
+    if get_parent().target_bug == null :
+        #totalTime = delay # so that the turret will immedietly shoot on sight
+        return
         
     totalTime += delta
 

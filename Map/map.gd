@@ -2,7 +2,7 @@ extends Node2D
 
 const MAP_SIZE := Vector2(10, 6)
 
-@onready var black_scn := preload("res://Objects/black_square.tscn")
+@onready var black_scn := preload("res://Map/black_square.tscn")
 @onready var tileMap := $TileMapLayer
 var gen_path:Dictionary # store all path
 

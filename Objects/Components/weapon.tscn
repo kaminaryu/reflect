@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://de7j7un0pi3ba" path="res://Arts/TurretBase.png" id="2_fwwki"]
 
 [node name="Weapon" type="Node2D"]
+modulate = Color(1, 1, 1, 0.309804)
 script = ExtResource("1_2jjse")
 delay = 1.0
 

@@ -1,7 +1,7 @@
 # ts an singleton / autoload
 extends Node2D
 
-@onready var arch_scn = preload("res://Objects/Turrets/arch.tscn")
+@onready var arch_scn = preload("res://Objects/Turrets/twin.tscn")
 
 func _input(evt: InputEvent) -> void :
     if evt is InputEventMouseButton :
