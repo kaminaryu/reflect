@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1qo8x1ocae5s"]
+
+[ext_resource type="Texture2D" uid="uid://d2q6k10c55rpp" path="res://Arts/Black.png" id="1_0wtdm"]
+[ext_resource type="PackedScene" uid="uid://bbu5enuna2va7" path="res://invis_handler.tscn" id="2_jaxka"]
+
+[node name="BlackSquare" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_0wtdm")
+
+[node name="InvisHandler" parent="." instance=ExtResource("2_jaxka")]
+reversed = true

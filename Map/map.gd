@@ -2,6 +2,7 @@ extends Node2D
 
 const MAP_SIZE := Vector2(10, 6)
 
+@onready var black_scn := preload("res://Objects/black_square.tscn")
 @onready var tileMap := $TileMapLayer
 var gen_path:Dictionary # store all path
 
@@ -19,6 +20,10 @@ func add_path(coords:Vector2, atlas_pos:Vector2, dir:int, turn_to:float = 0) -> 
         "pos": tileMap.map_to_local(coords) + tileMap.position,
         "turn_to": turn_to
     }
+    # add black square for fog of war of paths
+    var black := black_scn.instantiate()
+    black.position = tileMap.map_to_local(coords) + tileMap.position
+    add_child(black) 
     
 func out_of_bounds(pos:Vector2, bounds:Vector2) -> bool :
     return pos.x > bounds.x or pos.x < 0 \
