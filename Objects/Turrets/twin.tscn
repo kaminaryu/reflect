@@ -11,6 +11,8 @@
 [node name="BaseTurret" parent="." instance=ExtResource("1_7onk5")]
 
 [node name="HeadTurret" parent="." instance=ExtResource("2_7suk2")]
+cycle_delay = 0.5
+weapons_delay = 0.25
 
 [node name="Sprite2D" type="Sprite2D" parent="HeadTurret"]
 texture_filter = 1
@@ -19,9 +21,11 @@ texture = ExtResource("3_u711b")
 
 [node name="Weapon2" parent="HeadTurret" instance=ExtResource("4_7vko1")]
 position = Vector2(54, 24)
+delay = 0.5
 
 [node name="Weapon" parent="HeadTurret" instance=ExtResource("4_7vko1")]
 position = Vector2(54, -24)
+delay = 0.5
 
 [node name="InvisHandler" parent="." instance=ExtResource("5_h2mn2")]
 position = Vector2(-48, -72)

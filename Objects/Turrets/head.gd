@@ -1,8 +1,15 @@
 extends Node2D
 
 var enemy_pos: Vector2
-var total_time := 0.0
+var scan_bug_time := 0.0
+var weapon_cd_time := 0.0
 var MAX_DIST = 128 * 5
+var weapons:Array[Node]
+var weapons_index:int
+
+@export var cycle_delay := 1.0 #delay between each cycle
+@export var weapons_delay := 0.0 #delay between each cycle
+var total_time_delayed := 0.0
 
 #func _input(evt) -> void:
     #if evt is InputEventMouseButton :
@@ -14,12 +21,17 @@ var target_bug:Node
 func _ready() -> void:
     target_bug = find_nearest_bug()
     
+    # get all weapons
+    for child in get_children() :
+        if "Weapon" in child.name :
+            weapons.append(child)
+    
     
 func _process(delta) -> void:
-    total_time += delta
+    scan_bug_time += delta
     
-    if total_time > 1 :
-        total_time = 0
+    if scan_bug_time > 1 :
+        scan_bug_time = 0
         target_bug = find_nearest_bug()
         
     if target_bug == null :
@@ -28,12 +40,31 @@ func _process(delta) -> void:
                     #return
                 #child.shooting = false
         return
-        
+    
+    #print("k")
     enemy_pos = target_bug.global_position
     #enemy_pos = get_global_mouse_position()
     var theta := atan2( (enemy_pos.y - global_position.y), (enemy_pos.x - global_position.x) )
     rotation = theta
     
+    if weapons_index == len(weapons) :
+        if total_time_delayed > cycle_delay :
+            weapons_index = 0
+            total_time_delayed = 0
+        else :
+            total_time_delayed += delta     
+            return   
+        
+    weapon_cd_time += delta
+    if weapon_cd_time > weapons_delay :
+        weapon_cd_time = 0
+        weapons[weapons_index].shoot()
+        
+        weapons_index = (weapons_index + 1) #% len(weapons)
+        
+    
+            
+            
     
     
 func find_nearest_bug() -> Node :  
