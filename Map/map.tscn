@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bdrn6w8251e4c" path="res://Arts/TileSet.png" id="1_ro55w"]
 [ext_resource type="PackedScene" uid="uid://bntmd0nk7qfsm" path="res://Objects/Bugs/bug_spawner.tscn" id="3_6yc6o"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_njngi"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6yc6o"]
 texture = ExtResource("1_ro55w")
 texture_region_size = Vector2i(128, 128)
 0:0/next_alternative_id = 3
@@ -49,7 +49,7 @@ texture_region_size = Vector2i(128, 128)
 
 [sub_resource type="TileSet" id="TileSet_6yc6o"]
 tile_size = Vector2i(128, 128)
-sources/0 = SubResource("TileSetAtlasSource_njngi")
+sources/0 = SubResource("TileSetAtlasSource_6yc6o")
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_njngi")

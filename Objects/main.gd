@@ -17,7 +17,11 @@ func _input(evt) -> void:
     # quick quit for debugging
     if evt is InputEventKey :
         if evt.pressed and evt.keycode == KEY_ESCAPE :
-            get_tree().quit()
+            if not Brain.game_running :
+                return
+            Brain.game_running = false
+            $Control/PauseMenu.visible = true
+            #get_tree().quit()
 
 
 func pretty_print(dict: Dictionary) -> void :

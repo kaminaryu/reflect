@@ -1,7 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://eenbyicaechf"]
+[gd_scene load_steps=3 format=3 uid="uid://eenbyicaechf"]
 
 [ext_resource type="Script" uid="uid://bc14hpikgtvfc" path="res://Objects/sonar.gd" id="1_xsxt7"]
+[ext_resource type="AudioStream" uid="uid://donkvj1i0m527" path="res://Audios/SFX/Random59.wav" id="2_qm27p"]
 
 [node name="Sonar" type="Node2D"]
 z_index = 4096
 script = ExtResource("1_xsxt7")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_qm27p")
+volume_db = -1.089
+pitch_scale = 1.24

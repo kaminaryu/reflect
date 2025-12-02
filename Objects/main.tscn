@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfdrfpasb04i1"]
+[gd_scene load_steps=9 format=3 uid="uid://bfdrfpasb04i1"]
 
 [ext_resource type="Script" uid="uid://fxk2de8wv2x3" path="res://Objects/main.gd" id="1_h4pkl"]
 [ext_resource type="PackedScene" uid="uid://eenbyicaechf" path="res://Objects/sonar.tscn" id="3_2r4pp"]
 [ext_resource type="PackedScene" uid="uid://b223kfta31p5v" path="res://Objects/UI/turret_cursor.tscn" id="4_d7gkb"]
 [ext_resource type="PackedScene" uid="uid://bv8be3lqi5dye" path="res://Map/map.tscn" id="4_k26ky"]
+[ext_resource type="PackedScene" uid="uid://sx4we3v7tktf" path="res://control.tscn" id="5_k26ky"]
+[ext_resource type="AudioStream" uid="uid://cp1ycvjk670q2" path="res://Audios/Density & Time - MAZE.mp3" id="6_ngdle"]
+[ext_resource type="AudioStream" uid="uid://bag8ccodyoejw" path="res://Audios/SFX/Boom7.wav" id="7_svdc1"]
+[ext_resource type="AudioStream" uid="uid://dxyd5kdvlvua4" path="res://Audios/SFX/Boom13.wav" id="8_svdc1"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_h4pkl")
@@ -17,3 +21,19 @@ anchor_mode = 0
 zoom = Vector2(0.5, 0.5)
 
 [node name="TurretCursor" parent="." instance=ExtResource("4_d7gkb")]
+
+[node name="Control" parent="." instance=ExtResource("5_k26ky")]
+z_index = 4096
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_ngdle")
+volume_db = -10.0
+autoplay = true
+parameters/looping = true
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_svdc1")
+
+[node name="GameOver" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_svdc1")
+volume_db = 20.0

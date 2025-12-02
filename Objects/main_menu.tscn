@@ -1,0 +1,142 @@
+[gd_scene load_steps=14 format=4 uid="uid://61dcfif3w1xt"]
+
+[ext_resource type="Texture2D" uid="uid://bdrn6w8251e4c" path="res://Arts/TileSet.png" id="1_j5sbp"]
+[ext_resource type="Script" uid="uid://3yyxlgu7s4ys" path="res://Objects/main_menu.gd" id="1_y10qy"]
+[ext_resource type="FontFile" uid="uid://ra7jb0k4vax6" path="res://Arts/Fonts/interstellar_trip/Interstellar Trip Italic.otf" id="2_q835f"]
+[ext_resource type="FontFile" uid="uid://b1t6ngtae1ehi" path="res://Arts/Fonts/interstellar_trip/Interstellar Trip Italic.ttf" id="3_6l8vw"]
+[ext_resource type="PackedScene" uid="uid://ciomganmsqkda" path="res://Objects/Turrets/arch.tscn" id="4_y10qy"]
+[ext_resource type="PackedScene" uid="uid://crksypg3ccm0d" path="res://Objects/Turrets/twin.tscn" id="5_q835f"]
+[ext_resource type="PackedScene" uid="uid://dwciaj8bgili2" path="res://Objects/Turrets/crystal.tscn" id="6_6l8vw"]
+[ext_resource type="AudioStream" uid="uid://lc07i5211gbr" path="res://Audios/An Ancient King.mp3" id="8_e8hnt"]
+[ext_resource type="PackedScene" uid="uid://eenbyicaechf" path="res://Objects/sonar.tscn" id="9_apqwr"]
+[ext_resource type="AudioStream" uid="uid://b20vewuq7xihe" path="res://Audios/SFX/Pickup53.wav" id="10_siq2h"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7vrkn"]
+texture = ExtResource("1_j5sbp")
+texture_region_size = Vector2i(128, 128)
+0:0/next_alternative_id = 3
+0:0/0 = 0
+0:0/1 = 1
+0:0/1/transpose = true
+1:0/next_alternative_id = 4
+1:0/0 = 0
+1:0/1 = 1
+1:0/1/flip_h = true
+1:0/2 = 2
+1:0/2/flip_h = true
+1:0/2/flip_v = true
+1:0/3 = 3
+1:0/3/flip_v = true
+0:1/0 = 0
+1:1/next_alternative_id = 8
+1:1/0 = 0
+1:1/0/modulate = Color(0, 1, 0, 1)
+1:1/1 = 1
+1:1/1/flip_h = true
+1:1/1/transpose = true
+1:1/1/modulate = Color(0, 1, 0, 1)
+1:1/2 = 2
+1:1/2/flip_v = true
+1:1/2/modulate = Color(0, 1, 0, 1)
+1:1/3 = 3
+1:1/3/transpose = true
+1:1/3/modulate = Color(0, 1, 0, 1)
+1:1/4 = 4
+1:1/4/flip_v = true
+1:1/4/modulate = Color(1, 0, 0, 1)
+1:1/5 = 5
+1:1/5/transpose = true
+1:1/5/modulate = Color(1, 0, 0, 1)
+1:1/6 = 6
+1:1/6/modulate = Color(1, 0, 0, 1)
+1:1/7 = 7
+1:1/7/flip_h = true
+1:1/7/transpose = true
+1:1/7/modulate = Color(1, 0, 0, 1)
+
+[sub_resource type="TileSet" id="TileSet_fu7sn"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_7vrkn")
+
+[sub_resource type="LabelSettings" id="LabelSettings_glbon"]
+font = ExtResource("2_q835f")
+font_size = 256
+
+[node name="Main Menu" type="Node2D"]
+script = ExtResource("1_y10qy")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAMAAkAAAABAAEAAQANAAYAAAABAAAAAAANAAcAAAABAAAAAwANAAkAAAAAAAAAAQAOAAYAAAAAAAAAAQAOAAcAAAAAAAAAAQAOAAkAAAAAAAAAAQAPAAYAAAAAAAAAAQAPAAcAAAABAAAAAQAPAAgAAAABAAAAAwAPAAkAAAAAAAAAAQAQAAYAAAAAAAAAAQAQAAgAAAABAAAAAQAQAAkAAAABAAAAAgARAAYAAAABAAAAAQARAAcAAAAAAAAAAAARAAgAAAAAAAAAAAARAAkAAAABAAEABgA=")
+tile_set = SubResource("TileSet_fu7sn")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(0.5, 0.5)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 651.0
+offset_top = 39.0
+offset_right = 1538.0
+offset_bottom = 275.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "REFLECT"
+label_settings = SubResource("LabelSettings_glbon")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 353.0
+offset_top = 671.0
+offset_right = 848.0
+offset_bottom = 1088.0
+scale = Vector2(1.25887, 1.25887)
+theme_override_constants/separation = 125
+alignment = 2
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("3_6l8vw")
+theme_override_font_sizes/font_size = 128
+text = " PLAY "
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("3_6l8vw")
+theme_override_font_sizes/font_size = 128
+text = "QUIT"
+
+[node name="Arch" parent="." instance=ExtResource("4_y10qy")]
+position = Vector2(2376, 710)
+scale = Vector2(0.9, 0.9)
+main_menu_mode = true
+
+[node name="Twin" parent="." instance=ExtResource("5_q835f")]
+position = Vector2(2107, 960)
+scale = Vector2(0.9, 0.9)
+main_menu_mode = true
+
+[node name="Crystal" parent="." instance=ExtResource("6_6l8vw")]
+position = Vector2(1799, 1090)
+scale = Vector2(0.9, 0.9)
+main_menu_mode = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_e8hnt")
+autoplay = true
+
+[node name="Sonar" parent="." instance=ExtResource("9_apqwr")]
+
+[node name="BtnPress" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_siq2h")
+
+[connection signal="button_up" from="VBoxContainer/Play" to="." method="_on_play_button_up"]
+[connection signal="button_up" from="VBoxContainer/Quit" to="." method="_on_quit_button_up"]

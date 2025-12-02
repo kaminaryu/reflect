@@ -1,0 +1,303 @@
+[gd_scene load_steps=34 format=3 uid="uid://sx4we3v7tktf"]
+
+[ext_resource type="Script" uid="uid://dwpqfay612tjd" path="res://control.gd" id="1_6a6wx"]
+[ext_resource type="Texture2D" uid="uid://nvxgb13aju4" path="res://Arts/UI/HealthBar/Border.png" id="2_sky72"]
+[ext_resource type="Texture2D" uid="uid://ciqq5j15wii1e" path="res://Arts/UI/HealthBar/exp0.png" id="3_0ytqx"]
+[ext_resource type="Texture2D" uid="uid://dkihhmb5b65ed" path="res://Arts/UI/HealthBar/exp1.png" id="4_pxugv"]
+[ext_resource type="Texture2D" uid="uid://dworbnauwt7f6" path="res://Arts/UI/HealthBar/exp2.png" id="5_eh0v1"]
+[ext_resource type="Texture2D" uid="uid://c8md8c15xq2xw" path="res://Arts/UI/HealthBar/exp3.png" id="6_am1vj"]
+[ext_resource type="Texture2D" uid="uid://dani4tbcmpucq" path="res://Arts/UI/HealthBar/exp4.png" id="7_g31lc"]
+[ext_resource type="Texture2D" uid="uid://bir0lsfrexfly" path="res://Arts/UI/HealthBar/exp5.png" id="8_knq72"]
+[ext_resource type="Texture2D" uid="uid://c6n7tl5nbn17m" path="res://Arts/UI/HealthBar/hp0.png" id="9_knq72"]
+[ext_resource type="Texture2D" uid="uid://njnfr5j4enag" path="res://Arts/UI/HealthBar/hp1.png" id="10_xvdhi"]
+[ext_resource type="Texture2D" uid="uid://o74fcxgh7rit" path="res://Arts/UI/HealthBar/hp2.png" id="11_oq4si"]
+[ext_resource type="Texture2D" uid="uid://cirirjwkomxei" path="res://Arts/UI/HealthBar/hp3.png" id="12_m4egf"]
+[ext_resource type="Texture2D" uid="uid://da061kg0m1a7v" path="res://Arts/UI/HealthBar/hp4.png" id="13_pi4e7"]
+[ext_resource type="Texture2D" uid="uid://bnqi2268bewrd" path="res://Arts/UI/HealthBar/hp5.png" id="14_kuuv8"]
+[ext_resource type="Texture2D" uid="uid://dg5n7lete2aci" path="res://Arts/UI/HealthBar/hp6.png" id="15_ou021"]
+[ext_resource type="Texture2D" uid="uid://c3uvo76gckwh6" path="res://Arts/UI/GameOverScreen.png" id="16_xvdhi"]
+[ext_resource type="Texture2D" uid="uid://dyt6pgevd5ysb" path="res://Arts/UI/CrystalSmall.png" id="17_3fl80"]
+[ext_resource type="Texture2D" uid="uid://cqyq0wx1e1iye" path="res://Arts/UI/ArchSmall.png" id="17_kuuv8"]
+[ext_resource type="Texture2D" uid="uid://cwlaj3ef1qoyw" path="res://Arts/UI/RetryButton.png" id="17_oq4si"]
+[ext_resource type="Script" uid="uid://bldsjqbveq6od" path="res://score_label.gd" id="17_v61lp"]
+[ext_resource type="Texture2D" uid="uid://6sarhsbwdca" path="res://Arts/UI/TwinSmall.png" id="18_8jbwv"]
+[ext_resource type="Script" uid="uid://dn2isset1v5a6" path="res://money_label.gd" id="18_dgp6r"]
+[ext_resource type="Texture2D" uid="uid://dy4tkhg78mr5a" path="res://Arts/UI/MenuButton.png" id="18_m4egf"]
+[ext_resource type="Texture2D" uid="uid://cldrb10p1oprx" path="res://Arts/UI/VertBar.png" id="19_pi4e7"]
+[ext_resource type="FontFile" uid="uid://c5x6u3oh43lhf" path="res://Arts/Fonts/interstellar_trip/Interstellar Trip.otf" id="20_8jbwv"]
+[ext_resource type="Texture2D" uid="uid://dw7cv7y7jslhc" path="res://Arts/UI/PauseMenu.png" id="26_858bn"]
+[ext_resource type="Texture2D" uid="uid://b5b5mfpjldxbj" path="res://Arts/UI/ResumeButton.png" id="27_2pj6v"]
+[ext_resource type="AudioStream" uid="uid://b20vewuq7xihe" path="res://Audios/SFX/Pickup53.wav" id="28_w5605"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_xvdhi"]
+frames = 6
+pause = true
+frame_0/texture = ExtResource("3_0ytqx")
+frame_1/texture = ExtResource("4_pxugv")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("5_eh0v1")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("6_am1vj")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("7_g31lc")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("8_knq72")
+frame_5/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_3fl80"]
+frames = 7
+pause = true
+frame_0/texture = ExtResource("9_knq72")
+frame_1/texture = ExtResource("10_xvdhi")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("11_oq4si")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("12_m4egf")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("13_pi4e7")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("14_kuuv8")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("15_ou021")
+frame_6/duration = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_v61lp"]
+font = ExtResource("20_8jbwv")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_dgp6r"]
+font = ExtResource("20_8jbwv")
+font_size = 48
+font_color = Color(0.0117647, 0.501961, 0.203922, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4egf"]
+border_width_left = 6
+border_width_top = 7
+border_width_right = 6
+border_width_bottom = 7
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+script = ExtResource("1_6a6wx")
+
+[node name="Border" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_sky72")
+
+[node name="ExpBar" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 43.0
+offset_top = 36.0
+offset_right = 171.0
+offset_bottom = 52.0
+texture = SubResource("AnimatedTexture_xvdhi")
+
+[node name="HpBar" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 43.0
+offset_top = 9.0
+offset_right = 187.0
+offset_bottom = 41.0
+texture = SubResource("AnimatedTexture_3fl80")
+
+[node name="ScoreLabel" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 430.0
+offset_top = 10.0
+offset_right = 641.0
+offset_bottom = 46.0
+pivot_offset = Vector2(420, 0)
+text = "xxx283983"
+label_settings = SubResource("LabelSettings_v61lp")
+horizontal_alignment = 1
+vertical_alignment = 3
+script = ExtResource("17_v61lp")
+
+[node name="MoneyLabel" type="Label" parent="."]
+modulate = Color(0.0117647, 0.501961, 0.203922, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 430.0
+offset_top = 38.0
+offset_right = 641.0
+offset_bottom = 74.0
+pivot_offset = Vector2(420, 0)
+text = "xxx283983"
+label_settings = SubResource("LabelSettings_v61lp")
+horizontal_alignment = 1
+vertical_alignment = 3
+script = ExtResource("18_dgp6r")
+
+[node name="WeaponBar" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 128.0
+offset_right = 136.0
+offset_bottom = 512.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("19_pi4e7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WeaponBar"]
+texture_filter = 1
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Crystal" type="Button" parent="WeaponBar/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("17_3fl80")
+flat = true
+
+[node name="Price" type="Label" parent="WeaponBar/VBoxContainer/Crystal"]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 123.0
+offset_top = 23.0
+offset_right = 193.0
+offset_bottom = 93.0
+text = "$ 5"
+label_settings = SubResource("LabelSettings_dgp6r")
+
+[node name="Twin" type="Button" parent="WeaponBar/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("18_8jbwv")
+flat = true
+
+[node name="Price" type="Label" parent="WeaponBar/VBoxContainer/Twin"]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 123.0
+offset_top = 23.0
+offset_right = 193.0
+offset_bottom = 93.0
+text = "$ 7"
+label_settings = SubResource("LabelSettings_dgp6r")
+
+[node name="Arch" type="Button" parent="WeaponBar/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+mouse_default_cursor_shape = 2
+icon = ExtResource("17_kuuv8")
+flat = true
+
+[node name="Price" type="Label" parent="WeaponBar/VBoxContainer/Arch"]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 124.5
+offset_top = 31.0
+offset_right = 194.5
+offset_bottom = 101.0
+text = "$ 12"
+label_settings = SubResource("LabelSettings_dgp6r")
+
+[node name="GameOver" type="TextureRect" parent="."]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("16_xvdhi")
+
+[node name="Retry" type="Button" parent="GameOver"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 86.5
+offset_top = 502.0
+offset_right = 606.5
+offset_bottom = 638.0
+mouse_default_cursor_shape = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_m4egf")
+icon = ExtResource("17_oq4si")
+flat = true
+
+[node name="Menu" type="Button" parent="GameOver"]
+layout_mode = 0
+offset_left = 706.0
+offset_top = 502.0
+offset_right = 1226.0
+offset_bottom = 638.0
+mouse_default_cursor_shape = 2
+icon = ExtResource("18_m4egf")
+flat = true
+
+[node name="PauseMenu" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("26_858bn")
+
+[node name="Button" type="Button" parent="PauseMenu"]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 418.0
+offset_right = 603.0
+offset_bottom = 554.0
+icon = ExtResource("27_2pj6v")
+flat = true
+
+[node name="Menu" type="Button" parent="PauseMenu"]
+layout_mode = 0
+offset_left = 673.0
+offset_top = 447.0
+offset_right = 1193.0
+offset_bottom = 583.0
+mouse_default_cursor_shape = 2
+icon = ExtResource("18_m4egf")
+flat = true
+
+[node name="BtnPress" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("28_w5605")
+volume_db = 5.0
+
+[connection signal="button_up" from="WeaponBar/VBoxContainer/Crystal" to="." method="_on_crystal_button_up"]
+[connection signal="mouse_entered" from="WeaponBar/VBoxContainer/Crystal" to="." method="_on_crystal_mouse_entered"]
+[connection signal="mouse_exited" from="WeaponBar/VBoxContainer/Crystal" to="." method="_on_crystal_mouse_exited"]
+[connection signal="button_up" from="WeaponBar/VBoxContainer/Twin" to="." method="_on_twin_button_up"]
+[connection signal="mouse_entered" from="WeaponBar/VBoxContainer/Twin" to="." method="_on_twin_mouse_entered"]
+[connection signal="mouse_exited" from="WeaponBar/VBoxContainer/Twin" to="." method="_on_twin_mouse_exited"]
+[connection signal="button_up" from="WeaponBar/VBoxContainer/Arch" to="." method="_on_arch_button_up"]
+[connection signal="mouse_entered" from="WeaponBar/VBoxContainer/Arch" to="." method="_on_arch_mouse_entered"]
+[connection signal="mouse_exited" from="WeaponBar/VBoxContainer/Arch" to="." method="_on_arch_mouse_exited"]
+[connection signal="button_up" from="GameOver/Retry" to="." method="_on_retry_button_up"]
+[connection signal="mouse_entered" from="GameOver/Retry" to="." method="_on_retry_mouse_entered"]
+[connection signal="mouse_exited" from="GameOver/Retry" to="." method="_on_retry_mouse_exited"]
+[connection signal="button_up" from="GameOver/Menu" to="." method="_on_menu_button_up"]
+[connection signal="mouse_entered" from="GameOver/Menu" to="." method="_on_menu_mouse_entered"]
+[connection signal="mouse_exited" from="GameOver/Menu" to="." method="_on_menu_mouse_exited"]
+[connection signal="button_up" from="PauseMenu/Button" to="." method="_on_button_button_up"]
+[connection signal="mouse_entered" from="PauseMenu/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="PauseMenu/Button" to="." method="_on_button_mouse_exited"]
+[connection signal="button_up" from="PauseMenu/Menu" to="." method="_on_menu_button_up"]
+[connection signal="mouse_entered" from="PauseMenu/Menu" to="." method="_on_menu_mouse_entered"]
+[connection signal="mouse_exited" from="PauseMenu/Menu" to="." method="_on_menu_mouse_exited"]

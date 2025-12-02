@@ -48,7 +48,7 @@ func generate_paths() -> int :
     # gonna be honest, idk why i need to + Vector2(1, 1)
     var mapSize := (MAP_SIZE + Vector2(1, 1)) * 128
     var vp_size = get_viewport().get_visible_rect().size * 2 #because zoomed out
-    tileMap.position = ((vp_size - mapSize) * 0.5).snapped(Vector2(128, 128)) - Vector2(64, 64) # offset cuz fucky wucky
+    tileMap.position = ((vp_size - mapSize) * 0.5).snapped(Vector2(128, 128)) + Vector2(64, 64) # offset cuz fucky wucky
     
     
     # generate start point

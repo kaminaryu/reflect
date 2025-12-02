@@ -13,16 +13,22 @@ var waveFrame: Array[int]
 var waveRadius: Array[float]
 var waveThickness : Array[float]
 
-func _input(evt) -> void :
+func _unhandled_input(evt) -> void :
     if evt is InputEventMouseButton :
         if evt.pressed and evt.button_index == MOUSE_BUTTON_LEFT :
-            if waveEmits :
+            if GlobalStats.sonar_energy < 5 :
                 return
+            if waveEmits or not Brain.game_running or TurretBuilder.turret_index != -1:
+                return
+                
             waveEmits = true
+            GlobalStats.sonar_energy = 0
             waveCenter = get_global_mouse_position()
             #waveCenter = get_viewport().get_camera_2d().get_global_transform().affine_inverse().xform(evt.position)
             waveAnim()
             detect_enemies()
+            $AudioStreamPlayer2D.play()
+            
             
     
     
