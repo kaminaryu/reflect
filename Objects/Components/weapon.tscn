@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cguf41srkikn8"]
+[gd_scene load_steps=4 format=3 uid="uid://cguf41srkikn8"]
 
 [ext_resource type="Script" uid="uid://ndc63u4kbe2m" path="res://weapon.gd" id="1_2jjse"]
 [ext_resource type="Texture2D" uid="uid://de7j7un0pi3ba" path="res://Arts/TurretBase.png" id="2_fwwki"]
+[ext_resource type="AudioStream" uid="uid://cl1rgksxvgwl1" path="res://Audios/SFX/Hit49.wav" id="3_go145"]
 
 [node name="Weapon" type="Node2D"]
 modulate = Color(1, 1, 1, 0.309804)
@@ -10,3 +11,6 @@ delay = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_fwwki")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_go145")

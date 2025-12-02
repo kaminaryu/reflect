@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://crksypg3ccm0d"]
+[gd_scene load_steps=7 format=3 uid="uid://crksypg3ccm0d"]
 
 [ext_resource type="PackedScene" uid="uid://j6430foqheiv" path="res://Objects/Turrets/base.tscn" id="1_7onk5"]
+[ext_resource type="Script" uid="uid://ksiqbg53ltp0" path="res://Objects/Turrets/twin.gd" id="1_7suk2"]
 [ext_resource type="PackedScene" uid="uid://caopo1bwbjv8a" path="res://Objects/Turrets/head.tscn" id="2_7suk2"]
 [ext_resource type="Texture2D" uid="uid://gc2awjaosc18" path="res://Arts/Turret/Twin.png" id="3_u711b"]
 [ext_resource type="PackedScene" uid="uid://cguf41srkikn8" path="res://Objects/Components/weapon.tscn" id="4_7vko1"]
 [ext_resource type="PackedScene" uid="uid://bbu5enuna2va7" path="res://invis_handler.tscn" id="5_h2mn2"]
 
 [node name="Twin" type="Node2D"]
+script = ExtResource("1_7suk2")
 
 [node name="BaseTurret" parent="." instance=ExtResource("1_7onk5")]
 
@@ -20,13 +22,12 @@ rotation = 1.5708
 texture = ExtResource("3_u711b")
 
 [node name="Weapon2" parent="HeadTurret" instance=ExtResource("4_7vko1")]
-position = Vector2(54, 24)
+position = Vector2(55.3333, 24.6667)
 delay = 0.5
 
 [node name="Weapon" parent="HeadTurret" instance=ExtResource("4_7vko1")]
-position = Vector2(54, -24)
+position = Vector2(55.3333, -24.6667)
 delay = 0.5
 
 [node name="InvisHandler" parent="." instance=ExtResource("5_h2mn2")]
 position = Vector2(-48, -72)
-enabled = false

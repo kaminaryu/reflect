@@ -28,22 +28,27 @@ func _ready() -> void:
     
     
 func _process(delta) -> void:
+    if not Brain.game_running :
+        return
+        
     scan_bug_time += delta
     
     if scan_bug_time > 1 :
         scan_bug_time = 0
         target_bug = find_nearest_bug()
         
-    if target_bug == null :
+    if target_bug == null and not get_parent().main_menu_mode:
+        return
         #for child in get_children() :
                 #if not "Weapon" in child.name :
                     #return
                 #child.shooting = false
-        return
     
-    #print("k")
-    enemy_pos = target_bug.global_position
-    #enemy_pos = get_global_mouse_position()
+    if get_parent().main_menu_mode :
+        enemy_pos = get_global_mouse_position()
+    else :
+        enemy_pos = target_bug.global_position
+        
     var theta := atan2( (enemy_pos.y - global_position.y), (enemy_pos.x - global_position.x) )
     rotation = theta
     

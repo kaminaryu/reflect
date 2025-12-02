@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwciaj8bgili2"]
+
+[ext_resource type="Script" uid="uid://dilt7aj04ek1p" path="res://Objects/Turrets/crystal.gd" id="1_34mqm"]
+[ext_resource type="PackedScene" uid="uid://j6430foqheiv" path="res://Objects/Turrets/base.tscn" id="1_ccjwq"]
+[ext_resource type="PackedScene" uid="uid://caopo1bwbjv8a" path="res://Objects/Turrets/head.tscn" id="2_34mqm"]
+[ext_resource type="Texture2D" uid="uid://d3vkeikwc5fq6" path="res://Arts/Turret/Crystal.png" id="3_t7hf5"]
+[ext_resource type="PackedScene" uid="uid://cguf41srkikn8" path="res://Objects/Components/weapon.tscn" id="4_d0buw"]
+[ext_resource type="PackedScene" uid="uid://bbu5enuna2va7" path="res://invis_handler.tscn" id="5_a5luj"]
+
+[node name="Crystal" type="Node2D"]
+script = ExtResource("1_34mqm")
+
+[node name="BaseTurret" parent="." instance=ExtResource("1_ccjwq")]
+
+[node name="HeadTurret" parent="." instance=ExtResource("2_34mqm")]
+
+[node name="Sprite2D" type="Sprite2D" parent="HeadTurret"]
+texture_filter = 1
+rotation = 1.5708
+texture = ExtResource("3_t7hf5")
+
+[node name="Weapon" parent="HeadTurret" instance=ExtResource("4_d0buw")]
+position = Vector2(55.3333, 6.25849e-07)
+delay = 0.5
+
+[node name="InvisHandler" parent="." instance=ExtResource("5_a5luj")]
+position = Vector2(-48, -72)

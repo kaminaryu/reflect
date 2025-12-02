@@ -1,17 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://j6430foqheiv"]
+[gd_scene load_steps=5 format=3 uid="uid://j6430foqheiv"]
 
 [ext_resource type="Script" uid="uid://ociumgvdycfj" path="res://Objects/Turrets/base.gd" id="1_wg0a4"]
 [ext_resource type="Texture2D" uid="uid://cnmisn1mrryae" path="res://Arts/TurretBaseReal.png" id="1_xkb5c"]
+[ext_resource type="AudioStream" uid="uid://drsjont38t50n" path="res://Audios/SFX/Hit77.wav" id="3_1c43m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wg0a4"]
 size = Vector2(128, 128)
 
 [node name="BaseTurret" type="StaticBody2D"]
+scale = Vector2(0.8, 0.8)
 script = ExtResource("1_wg0a4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.654902, 0.654902, 0.654902, 1)
 texture_filter = 1
 texture = ExtResource("1_xkb5c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wg0a4")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_1c43m")
+pitch_scale = 0.83
